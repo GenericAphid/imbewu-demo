@@ -93,44 +93,85 @@ const CheckoutPage: React.FC = () => {
             
             <div className="space-y-4 mb-6">
               {state.cart.map(item => (
-                <div key={item.product.id} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 border border-gray-100 rounded-lg">
-                  <img
-                    src={item.product.image}
-                    alt={item.product.name}
-                    className="w-full sm:w-16 h-32 sm:h-16 object-cover rounded-lg"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{item.product.name}</h3>
-                    <p className="text-gray-500 text-xs sm:text-sm">R{item.product.price} per {item.product.unit}</p>
+                <div key={item.product.id} className="flex flex-col gap-3 p-3 sm:p-4 border border-gray-100 rounded-lg">
+                  {/* Mobile Layout */}
+                  <div className="sm:hidden flex gap-3">
+                    <img
+                      src={item.product.image}
+                      alt={item.product.name}
+                      className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 text-sm mb-1">{item.product.name}</h3>
+                      <p className="text-gray-500 text-xs mb-2">R{item.product.price} per {item.product.unit}</p>
+                      <p className="font-semibold text-emerald-600 text-sm">R{(item.product.price * item.quantity).toFixed(2)}</p>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between sm:justify-start gap-4">
-                    <div className="flex items-center space-x-2 sm:space-x-3 bg-gray-50 rounded-lg px-2 py-1">
+                  
+                  {/* Mobile Controls */}
+                  <div className="sm:hidden flex items-center justify-between">
+                    <div className="flex items-center space-x-2 bg-gray-50 rounded-lg px-3 py-2">
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                        className="p-1.5 sm:p-1 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation"
+                        className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation"
                         aria-label="Decrease quantity"
                       >
                         <Minus className="h-4 w-4" />
                       </button>
-                      <span className="font-medium text-gray-900 w-6 sm:w-8 text-center">{item.quantity}</span>
+                      <span className="font-medium text-gray-900 w-8 text-center">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                        className="p-1.5 sm:p-1 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation"
+                        className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation"
                         aria-label="Increase quantity"
                       >
                         <Plus className="h-4 w-4" />
                       </button>
                     </div>
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <p className="font-semibold text-gray-900 text-sm sm:text-base whitespace-nowrap">R{(item.product.price * item.quantity).toFixed(2)}</p>
+                    <button
+                      onClick={() => removeItem(item.product.id)}
+                      className="text-red-500 hover:text-red-700 transition-colors p-2 touch-manipulation"
+                      aria-label="Remove item"
+                    >
+                      <Trash2 className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  {/* Desktop Layout */}
+                  <div className="hidden sm:flex sm:items-center gap-4">
+                    <img
+                      src={item.product.image}
+                      alt={item.product.name}
+                      className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 text-base">{item.product.name}</h3>
+                      <p className="text-gray-500 text-sm">R{item.product.price} per {item.product.unit}</p>
+                    </div>
+                    <div className="flex items-center space-x-3 bg-gray-50 rounded-lg px-2 py-1">
                       <button
-                        onClick={() => removeItem(item.product.id)}
-                        className="text-red-500 hover:text-red-700 transition-colors p-2 touch-manipulation"
-                        aria-label="Remove item"
+                        onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                        className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                        aria-label="Decrease quantity"
                       >
-                        <Trash2 className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="font-medium text-gray-900 w-8 text-center">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                        className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus className="h-4 w-4" />
                       </button>
                     </div>
+                    <p className="font-semibold text-gray-900 text-base whitespace-nowrap w-24 text-right">R{(item.product.price * item.quantity).toFixed(2)}</p>
+                    <button
+                      onClick={() => removeItem(item.product.id)}
+                      className="text-red-500 hover:text-red-700 transition-colors p-1"
+                      aria-label="Remove item"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </div>
                 </div>
               ))}
