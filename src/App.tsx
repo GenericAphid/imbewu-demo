@@ -10,7 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   return (
     <AppProvider>
-      <Router>
+      <Router basename="/imbewu-demo">
         <div className="min-h-screen bg-gray-50">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
