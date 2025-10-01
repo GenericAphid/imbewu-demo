@@ -31,24 +31,24 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white shadow-lg border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           <Link to="/catalogue" className="flex items-center space-x-2 group">
             <div className="bg-gradient-to-r from-emerald-500 to-green-600 p-2 rounded-lg group-hover:shadow-lg transition-shadow">
-              <img src={logo} alt="Imbewu Logo" className="h-6 w-6 object-contain" />
+              <img src={logo} alt="Imbewu Logo" className="h-5 w-5 sm:h-6 sm:w-6 object-contain" />
             </div>
-            <div>
+            <div className="hidden md:block">
               <h1 className="text-xl font-bold text-gray-900">Imbewu Farmers Marketplace</h1>
               <p className="text-xs text-gray-500">Fresh Produce Delivered</p>
             </div>
           </Link>
 
-          <nav className="flex items-center space-x-6">
+          <nav className="flex items-center space-x-2 sm:space-x-4 md:space-x-6">
             {state.user ? (
               <>
                 <Link 
                   to="/catalogue" 
-                  className="text-gray-700 hover:text-emerald-600 font-medium transition-colors"
+                  className="hidden sm:block text-gray-700 hover:text-emerald-600 font-medium transition-colors"
                 >
                   Products
                 </Link>
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
                   className="relative p-2 text-gray-700 hover:text-emerald-600 transition-colors"
                   data-cart-icon
                 >
-                  <ShoppingCart className="h-6 w-6" />
+                  <ShoppingCart className="h-5 w-5 sm:h-6 sm:w-6" />
                   {cartItemsCount > 0 && (
                     <span 
                       data-cart-badge
@@ -67,8 +67,8 @@ const Header: React.FC = () => {
                     </span>
                   )}
                 </Link>
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="hidden sm:flex items-center space-x-2">
                     <User className="h-5 w-5 text-gray-500" />
                     <span className="text-sm font-medium text-gray-700">{state.user.name}</span>
                   </div>
@@ -77,14 +77,14 @@ const Header: React.FC = () => {
                     className="p-2 text-gray-500 hover:text-red-600 transition-colors"
                     title="Logout"
                   >
-                    <LogOut className="h-5 w-5" />
+                    <LogOut className="h-4 w-4 sm:h-5 sm:w-5" />
                   </button>
                 </div>
               </>
             ) : (
               <Link 
                 to="/login" 
-                className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+                className="bg-emerald-600 text-white px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium hover:bg-emerald-700 transition-colors"
               >
                 Login
               </Link>

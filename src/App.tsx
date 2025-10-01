@@ -11,7 +11,7 @@ function App() {
   return (
     <AppProvider>
       <Router basename="/imbewu-demo">
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 overflow-x-hidden">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<Navigate to="/login" replace />} />
