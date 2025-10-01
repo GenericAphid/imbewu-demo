@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Loader2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import logo from '/logo.png';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const LoginPage: React.FC = () => {
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="bg-gradient-to-r from-emerald-500 to-green-600 p-3 rounded-2xl inline-block mb-4 shadow-lg">
-            <img src="/logo.png" alt="Imbewu Logo" className="h-8 w-8 object-contain" />
+            <img src={logo} alt="Imbewu Logo" className="h-8 w-8 object-contain" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Imbewu Farmers Marketplace</h1>
           <p className="text-gray-600">Fresh produce delivered to your door</p>

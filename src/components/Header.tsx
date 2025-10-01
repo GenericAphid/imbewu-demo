@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, LogOut } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import logo from '/logo.png';
 
 const Header: React.FC = () => {
   const { state, dispatch } = useApp();
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <Link to="/catalogue" className="flex items-center space-x-2 group">
             <div className="bg-gradient-to-r from-emerald-500 to-green-600 p-2 rounded-lg group-hover:shadow-lg transition-shadow">
-              <img src="/logo.png" alt="Imbewu Logo" className="h-6 w-6 object-contain" />
+              <img src={logo} alt="Imbewu Logo" className="h-6 w-6 object-contain" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Imbewu Farmers Marketplace</h1>
